@@ -39,4 +39,4 @@ public class BubbleSortWithSwaps {
         System.out.println();
         System.out.println("Swaps: " + swaps);
     }
-                           }
+}
