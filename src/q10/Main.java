@@ -1,36 +1,39 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line = br.readLine();
-        if (line == null || line.isEmpty()) return;
-        String[] tokens = line.split("\\s+");
-        Stack<Integer> stack = new Stack<>();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        for (String token : tokens) {
-            if (isOperator(token)) {
-                int b = stack.pop();
-                int a = stack.pop();
-                
-                switch (token) {
-                    case "+": stack.push(a + b); break;
-                    case "-": stack.push(a - b); break;
-                    case "*": stack.push(a * b); break;
-                    case "/": stack.push(a / b); break;
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+
+        int swaps = 0;
+
+        // Bubble Sort
+        for(int i = 0; i < n - 1; i++){
+            for(int j = 0; j < n - i - 1; j++){
+                if(arr[j] > arr[j + 1]){
+                    // swap
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swaps++;
                 }
-            } else {
-                // It's a number
-                stack.push(Integer.parseInt(token));
             }
         }
 
-        // The last element in the stack is the result
-        System.out.println(stack.pop());
-    }
+        // Print sorted array
+        for(int i = 0; i < n; i++){
+            System.out.print(arr[i]);
+            if(i < n - 1) System.out.print(" ");
+        }
 
-    private static boolean isOperator(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
+        // Print swaps
+        System.out.println();
+        System.out.println("Swaps: " + swaps);
     }
 }
