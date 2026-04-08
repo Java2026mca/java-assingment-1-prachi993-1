@@ -6,7 +6,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line = br.readLine();
         if (line == null || line.isEmpty()) return;
-
         String[] tokens = line.split("\\s+");
         Stack<Integer> stack = new Stack<>();
 
